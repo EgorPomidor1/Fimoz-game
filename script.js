@@ -34,7 +34,7 @@ function handleTouchMove(event) {
 }
 
 function handleTouchEnd() {
-    if (touchEndY < touchStartY) { // Свайп вниз
+    if (touchEndY > touchStartY) { // Свайп вниз
         event.preventDefault(); // Отключение перезагрузки страницы при свайпе
         const currentHeight = parseInt(window.getComputedStyle(bar).height);
         const containerHeight = parseInt(window.getComputedStyle(document.querySelector('.bar-background')).height);
