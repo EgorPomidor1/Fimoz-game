@@ -4,7 +4,7 @@ const successText = document.getElementById('successText');
 const timerDisplay = document.getElementById('timer');
 const restartButton = document.getElementById('restartButton');
 const modal = document.getElementById('modal');
-const fillAmount = 15; // Уменьшено количество пикселей, на которое увеличивается шкала при каждом свайпе
+const fillAmount = 15; // Количество пикселей, на которое увеличивается шкала при каждом свайпе
 const decayRate = 1;  // Количество пикселей, на которое уменьшается шкала каждую итерацию
 const successThreshold = 100; // Порог заполнения для сообщения о успехе
 
@@ -12,12 +12,15 @@ let startTime;
 let timerInterval;
 let decayInterval;
 let timerRunning = false;
+let touchStartY;
+let touchEndY;
 
 document.querySelector('.container').addEventListener('touchstart', handleTouchStart, false);
 document.querySelector('.container').addEventListener('touchmove', handleTouchMove, false);
 document.querySelector('.container').addEventListener('touchend', handleTouchEnd, false);
 
 function handleTouchStart(event) {
+    event.preventDefault(); // Отключение перезагрузки страницы при свайпе
     if (!timerRunning) {
         startTimer();
         startDecay();
@@ -31,8 +34,8 @@ function handleTouchMove(event) {
 }
 
 function handleTouchEnd() {
-    if (touchEndY > touchStartY) { // Изменено направление свайпа на снизу вверх
-        // Свайп вверх
+    if (touchEndY < touchStartY) { // Свайп вниз
+        event.preventDefault(); // Отключение перезагрузки страницы при свайпе
         const currentHeight = parseInt(window.getComputedStyle(bar).height);
         const containerHeight = parseInt(window.getComputedStyle(document.querySelector('.bar-background')).height);
 
