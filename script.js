@@ -4,7 +4,7 @@ const successText = document.getElementById('successText');
 const timerDisplay = document.getElementById('timer');
 const restartButton = document.getElementById('restartButton');
 const modal = document.getElementById('modal');
-const fillAmount = 15; // Количество пикселей, на которое увеличивается шкала при каждом свайпе
+const fillAmount = 25; // Количество пикселей, на которое увеличивается шкала при каждом свайпе
 const decayRate = 1;  // Количество пикселей, на которое уменьшается шкала каждую итерацию
 const successThreshold = 100; // Порог заполнения для сообщения о успехе
 
