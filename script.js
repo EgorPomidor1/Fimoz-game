@@ -36,7 +36,9 @@ function handleTouchMove(event) {
 function handleTouchEnd() {
     if (touchEndY > touchStartY) { // Свайп вниз
         event.preventDefault(); // Отключение перезагрузки страницы при свайпе
-        const currentHeight = parseInt(window.getComputedStyle(bar).height);
+
+        // Получаем текущую высоту полосы
+        const currentHeight = parseInt(bar.style.height) || 0; 
         const containerHeight = parseInt(window.getComputedStyle(document.querySelector('.bar-background')).height);
 
         let newHeight = currentHeight + fillAmount;
@@ -115,7 +117,7 @@ function stopDecay() {
 }
 
 function decay() {
-    const currentHeight = parseInt(window.getComputedStyle(bar).height);
+    const currentHeight = parseInt(bar.style.height) || 0;
     if (currentHeight > 0) {
         bar.style.height = (currentHeight - decayRate) + 'px';
     }
